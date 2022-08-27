@@ -1,10 +1,19 @@
 import { useState } from "react";
+import axios from "axios";
 import "./App.css";
 import FileBase from "react-file-base64";
 
 function App() {
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState("");
   console.log(file);
+
+  const uploadFile = async () => {
+    await axios.post("http://localhost:7000/upload/", file);
+  };
+
+  if (file) {
+    uploadFile();
+  }
 
   return (
     <div className="App">
